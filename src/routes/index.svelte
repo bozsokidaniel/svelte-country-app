@@ -7,7 +7,7 @@
 
     $: {
         if(searchTerm){
-            filteredCountries = $countries.filter(countries => countries.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
+            filteredCountries = $countries.filter(countries => countries.officialName.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
         }
         else{
             filteredCountries = [ ...$countries];

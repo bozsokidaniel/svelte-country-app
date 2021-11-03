@@ -3,22 +3,20 @@ import {writable} from "svelte/store";
 export const countries = writable([]);
 
 const fetchCountries = async () => {
-    const url = 'https://restcountries.eu/rest/v2/all';
+    const url = 'https://restcountries.com/v3.1/all';
     const res = await fetch(url);
     const data = await res.json();
 
     const loadedCountries = data.map((data) => {
         return {
-            name: data.name,
-            alpha3Code: data.alpha3Code,
-            nativeName: data.nativeName,
-            flag: data.flag,
-            topLevelDomain: data.topLevelDomain[0],
-            alpha3Code: data.alpha3Code,
-            callingCodes: data.callingCodes,
+            officialName: data.name.official,
+            topLevelDomain: data.tld,
+            alpha3Code: data.cca3,
             capital: data.capital,
             region: data.region,
-            population: data.population
+            area: data.area,
+            flag: data.flags.svg,
+            population: data.population,
         }
     });
     countries.set(loadedCountries);
